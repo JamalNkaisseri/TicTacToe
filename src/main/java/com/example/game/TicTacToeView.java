@@ -11,9 +11,20 @@ public class TicTacToeView extends Application {
 
     private static final int GRID_SIZE = 3;
 
+    GridPane grid = new GridPane();
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GridPane grid = new GridPane();
+
+        printBoard();
+        Scene scene = new Scene(grid,300,300);
+        primaryStage.setTitle("TicTacToe");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void printBoard(){
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
@@ -26,10 +37,7 @@ public class TicTacToeView extends Application {
                 grid.add(button, col, row);
             }
         }
-
-        Scene scene = new Scene(grid,300,300);
-        primaryStage.setTitle("TicTacToe");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 }
+
+
