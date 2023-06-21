@@ -11,33 +11,56 @@ public class TicTacToeView extends Application {
 
     private static final int GRID_SIZE = 3;
 
+    Button[][] buttonCell = new Button[GRID_SIZE][GRID_SIZE];
+
     GridPane grid = new GridPane();
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        printBoard();
+        board();
         Scene scene = new Scene(grid,300,300);
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void printBoard(){
+    private void board() {
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
 
-        //Create 3x3 grid
+        // Create 3x3 grid
         for (int row = 0; row < GRID_SIZE; row++) {
             for (int col = 0; col < GRID_SIZE; col++) {
                 Button button = new Button();
                 button.setMinSize(80, 80); // Set button size
                 grid.add(button, col, row);
+                buttonCell[row][col] = button; // Store the button in the 2D array
+
+                // Set event handler for button click
+                button.setOnMouseClicked(mouseEvent -> handleButtonClick(button));
             }
         }
+
+        // Now you can access the buttons array outside the loop
+        // and perform operations on individual buttons if needed
+        // For example, buttons[0][0] represents the top-left button.
     }
+
+    private void playerMove(int row,int col){
+        Button button = buttonCell[row][col];
+        button.setText("X");
+        button.setStyle("-fx-font-size: 30px;"); // Increase font size
+    }
+
+    private void handleButtonClick(Button button){
+        int clickedRow = GridPane.getRowIndex(button);
+        int clickedCol = GridPane.getColumnIndex(button);
+        playerMove(clickedRow,clickedCol);
+    }
+
 }
 
 
