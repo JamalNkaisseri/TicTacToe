@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 public class TicTacToeView extends Application {
 
+    TicTacToeLogic logic = new TicTacToeLogic();
+
     private static final int GRID_SIZE = 3;
 
     Button[][] buttonCell = new Button[GRID_SIZE][GRID_SIZE];
@@ -19,14 +21,15 @@ public class TicTacToeView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        board();
+        displayBoard();
         Scene scene = new Scene(grid,300,300);
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 
-    private void board() {
+    private void displayBoard() {
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
@@ -60,6 +63,7 @@ public class TicTacToeView extends Application {
         int clickedCol = GridPane.getColumnIndex(button);
         playerMove(clickedRow,clickedCol);
     }
+
 
 }
 
