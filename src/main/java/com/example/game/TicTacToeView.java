@@ -13,7 +13,8 @@ public class TicTacToeView extends Application {
 
     private static final int GRID_SIZE = 3;
 
-    Button[][] buttonCell = new Button[GRID_SIZE][GRID_SIZE];
+    //Array representation of the game board
+    Button[][] board = new Button[GRID_SIZE][GRID_SIZE];
 
     GridPane grid = new GridPane();
 
@@ -40,7 +41,7 @@ public class TicTacToeView extends Application {
                 Button button = new Button();
                 button.setMinSize(80, 80); // Set button size
                 grid.add(button, col, row);
-                buttonCell[row][col] = button; // Store the button in the 2D array
+                board[row][col] = button; // Store the button in the 2D array
 
                 // Set event handler for button click
                 button.setOnMouseClicked(mouseEvent -> handleButtonClick(button));
@@ -53,7 +54,7 @@ public class TicTacToeView extends Application {
     }
 
     private void playerMove(int row,int col){
-        Button button = buttonCell[row][col];
+        Button button = board[row][col];
         button.setText("X");
         button.setStyle("-fx-font-size: 30px;"); // Increase font size
     }
