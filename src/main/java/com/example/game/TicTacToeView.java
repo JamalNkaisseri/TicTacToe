@@ -19,14 +19,14 @@ public class TicTacToeView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        board();
+        displayBoard();
         Scene scene = new Scene(grid,300,300);
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void board() {
+    private void displayBoard() {
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
