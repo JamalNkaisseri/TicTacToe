@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 public class TicTacToeView extends Application {
 
+    TicTacToeLogic logic = new TicTacToeLogic();
+
     private static final int GRID_SIZE = 3;
 
     Button[][] buttonCell = new Button[GRID_SIZE][GRID_SIZE];
@@ -24,6 +26,7 @@ public class TicTacToeView extends Application {
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 
     private void displayBoard() {
@@ -60,6 +63,7 @@ public class TicTacToeView extends Application {
         int clickedCol = GridPane.getColumnIndex(button);
         playerMove(clickedRow,clickedCol);
     }
+
 
 }
 
