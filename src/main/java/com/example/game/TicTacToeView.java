@@ -13,7 +13,10 @@ public class TicTacToeView extends Application {
 
     private static final int GRID_SIZE = 3;
 
+
     //Array representation of the game board
+
+
     Button[][] board = new Button[GRID_SIZE][GRID_SIZE];
 
     GridPane grid = new GridPane();
