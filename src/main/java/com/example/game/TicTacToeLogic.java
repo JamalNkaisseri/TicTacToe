@@ -4,87 +4,20 @@ import javafx.scene.control.Button;
 
 public class TicTacToeLogic {
 
-    private static final char PLAYER_SYMBOL = 'X';
-    private static final char COMPUTER_SYMBOL = 'O';
-    private static final char EMPTY_SYMBOL = ' ';
-
-    private static class Move{
-        int row;
-        int col;
-        int score;
-
-        public Move(int row,int col,int score){
-            this.row = row;
-            this.col = col;
-            this.score = score;
-        }
-    }
-
-    // Minimax algorithm
-    private Move minimax(Button[][] board, int depth, boolean maximizingPlayer) {
-        if (checkWin(board,PLAYER_SYMBOL)) {
-            return new Move(-1, -1, -10);
-        } else if (checkWin(board,COMPUTER_SYMBOL)) {
-            return new Move(-1, -1, 10);
-        } else if (isBoardFull(board)) {
-            return new Move(-1, -1, 0);
-        }
-
-        Move bestMove = new Move(-1, -1, maximizingPlayer ? Integer.MIN_VALUE : Integer.MAX_VALUE);
-
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                if (board[row][col].getText().equals(String.valueOf(EMPTY_SYMBOL))) {
-                    board[row][col].setText(maximizingPlayer ? String.valueOf(COMPUTER_SYMBOL) : String.valueOf(PLAYER_SYMBOL));
-                    Move move = minimax(board, depth + 1, !maximizingPlayer);
-                    board[row][col].setText(String.valueOf(EMPTY_SYMBOL));
-
-                    if (maximizingPlayer) {
-                        if (move.score == 10) { // Computer wins
-                            bestMove.row = row;
-                            bestMove.col = col;
-                            bestMove.score = move.score;
-                            return bestMove; // Return immediately if a winning move is found
-                        } else if (move.score > bestMove.score) {
-                            bestMove.row = row;
-                            bestMove.col = col;
-                            bestMove.score = move.score;
-                        }
-                    } else {
-                        if (move.score == -10) { // Player wins
-                            bestMove.row = row;
-                            bestMove.col = col;
-                            bestMove.score = move.score;
-                            return bestMove; // Return immediately if a winning move is found
-                        } else if (move.score < bestMove.score) {
-                            bestMove.row = row;
-                            bestMove.col = col;
-                            bestMove.score = move.score;
-                        }
-                    }
-                }
-            }
-        }
-
-        return bestMove;
-    }
-
-
-
     // Check if board is full
-    public boolean isBoardFull(Button[][] board){
-
+    public boolean isBoardFull(Button[][] board) {
         int GRID_SIZE = 3;
-        for(int row = 0;row < GRID_SIZE;row++){
-            for(int col = 0;col < GRID_SIZE;col++){
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int col = 0; col < GRID_SIZE; col++) {
                 Button button = board[row][col];
-                if(button.getText().isEmpty()){
-                    return true;
+                if (button.getText().isEmpty()) {
+                    return false; // Return false if an empty spot is found
                 }
             }
         }
-        return false;
+        return true; // Return true if no empty spots are found (board is full)
     }
+
 
     // Check winner
     public boolean checkWin(Button[][]board,char symbol) {
