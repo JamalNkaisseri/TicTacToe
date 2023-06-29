@@ -3,19 +3,17 @@ package com.example.game;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
-
 public class TicTacToeView extends Application {
 
-
     private char currentPlayer = 'X';
-    private final char[][] board = new char[3][3];
+    private char[][] board = new char[3][3];
     private final Button[][] buttons = new Button[3][3];
 
 
@@ -24,7 +22,7 @@ public class TicTacToeView extends Application {
 
         GridPane grid = createGameBoard();
 
-        Scene scene = new Scene(grid,300,300);
+        Scene scene = new Scene(grid,500,500);
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -75,9 +73,9 @@ public class TicTacToeView extends Application {
 
             // Check if the game has been won or drawn
             if (isGameWon(currentPlayer)) {
-                showResult("Player " + currentPlayer + " wins!");
+                showAlert("Player " + currentPlayer + " wins!");
             } else if (isBoardFull()) {
-                showResult("It's a tie!");
+                showAlert("It's a tie!");
             }
 
             // Switch to the current player and if it is the computer call
@@ -192,24 +190,33 @@ public class TicTacToeView extends Application {
         return true;
     }
 
-    private void showResult(String message) {
-        Pane pane = new Pane();
-        pane.setPrefSize(300, 300);
-
-        Button resultButton = new Button(message);
-        resultButton.setFont(Font.font(20));
-        resultButton.setMinSize(200, 50);
-        resultButton.setLayoutX(50);
-        resultButton.setLayoutY(125);
-
-        pane.getChildren().add(resultButton);
-
-        Scene scene = new Scene(pane);
-        Stage stage = new Stage();
-        stage.setTitle("Game Over");
-        stage.setScene(scene);
-        stage.show();
+    // Display a dialog box with a message to the user
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Over");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.setOnHidden(e -> resetGame());
+        alert.show();
     }
+
+    // Reset game to its initial state
+    private void resetGame() {
+
+        // Reset the current player variable
+        currentPlayer = 'X';
+
+        // Create a new empty 3x3 board
+        board = new char[3][3];
+
+        // Clear text on each button and wipe out the grid
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                buttons[row][col].setText("");
+            }
+        }
+    }
+
 
 }
 
