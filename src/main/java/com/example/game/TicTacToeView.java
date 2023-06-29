@@ -9,6 +9,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+
+
+
 public class TicTacToeView extends Application {
 
     private char currentPlayer = 'X';
@@ -20,7 +23,7 @@ public class TicTacToeView extends Application {
 
         GridPane grid = createGameBoard();
 
-        Scene scene = new Scene(grid,300,300);
+        Scene scene = new Scene(grid,500,500);
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
