@@ -10,9 +10,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
-
-
-
 public class TicTacToeView extends Application {
 
     private char currentPlayer = 'X';
