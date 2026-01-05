@@ -39,6 +39,8 @@ This is a TicTacToe game developed using Java and JavaFX. The game includes an A
 The Minimax algorithm is used by the AI player to determine the best move to make. It considers all possible moves and assigns a score to each move, assuming the opponent also plays optimally. The AI player then chooses the move with the highest score, guaranteeing the best possible outcome or, at worst, a draw.
 
 ## Credits
-This project is developed by [Jamal]. If you have any questions or suggestions, please feel free to contact me.
+This project is developed by me. If you have any questions or suggestions, please feel free to contact me.
+
+X - @Jamxl98
 
 Enjoy playing the TicTacToe game against the unbeatable AI!
